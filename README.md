@@ -7,7 +7,7 @@
 <div align="left">
 
 ## Execute
-
+1. npm start
 
 ## Updates
 1. Update packages to latest version (npm update --save)

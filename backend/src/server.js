@@ -8,6 +8,10 @@ const HUE_USERNAME = process.env.HUE_USERNAME;
 const HUE_BRIDGE_IP = process.env.HUE_BRIDGE_IP;
 
 
+/**
+ * Function that fetch all light groups and returns the selected properties
+ * @returns {Object} - All the light groups or Error
+ */
 export async function getAllGroups() {
   try {
     const url = `http://${HUE_BRIDGE_IP}/api/${HUE_USERNAME}/groups`;
@@ -20,11 +24,15 @@ export async function getAllGroups() {
     });
     return group;
     } catch (error) {
-    throw new Error(`Failed to retrieve groups: ${error.message}`);
+    throw new Error(`Error with fetch of groups - ${error.message}`);
   }
 };
 
 
+/**
+ * Function that fetch all lights and returns the selected properties
+ * @returns {Object} - All the lights or Error
+ */
 export async function getAllLights() {
     try {
       const url = `http://${HUE_BRIDGE_IP}/api/${HUE_USERNAME}/lights`;
@@ -32,17 +40,22 @@ export async function getAllLights() {
       const lights = response.data;
       // Map over each light and return the desired properties
       const light = Object.entries(lights).map(([key, value]) => {
-        const {on, bri, mode} = value.state; // properties from state object
+        const {on, bri} = value.state; // properties from state object
         const {name, type, modelid, manufacturername} = value; // properties from parent object
-        return {id: key, name, on, bri, mode, type, modelid, manufacturername};
+        return {id: key, name, on, bri, type, modelid, manufacturername};
       });
       return light;
     } catch (error) {
-      throw new Error(`Failed to retrieve lights: ${error.message}`);
+      throw new Error(`Error with fetch of lights - ${error.message}`);
     }
 };
 
 
+/**
+ * Function that turn on light group
+ * @param {Number} groupId - The ID of the group
+ * @returns {Object} - Response data
+ */
 export async function turnOnGroup(groupId) {
     if (!groupId) {
         throw new Error("Missing groupID");
@@ -57,6 +70,11 @@ export async function turnOnGroup(groupId) {
 };
 
 
+/**
+ * Function that turn off light group
+ * @param {Number} groupId - The ID of the group
+ * @returns {Object} - Response data
+ */
 export async function turnOffGroup(groupId) {
     if (!groupId) {
       throw new Error("Missing groupID");
@@ -71,6 +89,11 @@ export async function turnOffGroup(groupId) {
 };
 
 
+/**
+ * Function that turn on light
+ * @param {Number} lightId - The ID of the light
+ * @returns {Object} - Response data
+ */
 export async function turnOnLight(lightId) {
     if (!lightId) {
         throw new Error("Missing lightId");
@@ -85,6 +108,11 @@ export async function turnOnLight(lightId) {
 };
 
 
+/**
+ * Function that turn off light
+ * @param {Number} lightId - The ID of the light
+ * @returns {Object} - Response data
+ */
 export async function turnOffLight(lightId) {
     if (!lightId) {
         throw new Error("Missing lightId");
@@ -99,6 +127,12 @@ export async function turnOffLight(lightId) {
 };
 
 
+/**
+ * Function that set brightness for group
+ * @param {Number} groupId - The ID of the group
+ * @param {Nunber} brightness - The level of brightness
+ * @returns {Object} - Response data
+ */
 export async function setGroupBrightness(groupId, brightness) {
     if (!groupId) {
         throw new Error("Missing groupID");
@@ -113,6 +147,12 @@ export async function setGroupBrightness(groupId, brightness) {
 };
 
 
+/**
+ * Function that set brightness for light
+ * @param {Number} lightId - The ID of the light
+ * @param {Nunber} brightness - The level of brightness
+ * @returns {Object} - Response data
+ */
 export async function setLightBrightness(lightId, brightness) {
     if (!lightId) {
         throw new Error("Missing lightId");
