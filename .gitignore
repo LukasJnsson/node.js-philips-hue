@@ -1,0 +1,10 @@
+#Fundamentals
+node_modules
+npm-debug.log
+.cache
+.gitattributes
+.DS_Store
+src/configs/db.config.js
+src/configs/general.config.js
+.gitattributes
+.env
