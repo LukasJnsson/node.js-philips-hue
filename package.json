@@ -2,7 +2,7 @@
   "type": "module",
   "name": "node.js-philips-hue",
   "version": "1.0.0",
-  "description": "<div align=\"center\"> <img alt=\"NodeJS\" width=\"40px\" style=\"padding-right:10px;\" src=\"https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg\"/> <br/>",
+  "description": "Node.js, Axios, Phue-API",
   "main": "app.js",
   "scripts": {
     "test": "",
