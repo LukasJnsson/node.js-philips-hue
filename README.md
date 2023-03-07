@@ -11,3 +11,8 @@
 
 ## Updates
 1. Update packages to latest version (npm update --save)
+
+
+#
+
+![img](https://github.com/LukasJnsson/node.js-philips-hue/blob/main/frontend/src/assets/node-hue.jpg?raw=true)
